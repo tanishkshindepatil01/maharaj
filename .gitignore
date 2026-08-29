@@ -1,0 +1,41 @@
+# LaTeX auxiliary, build and log files
+*.aux
+*.log
+*.bbl
+*.blg
+*.lof
+*.lot
+*.out
+*.toc
+*.nav
+*.snm
+*.vrb
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.dvi
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env/
+.venv/
+
+# Temporary extraction files
+blueprint_parsed.json
+extracted_from_hehe/
+REPORT/extracted_from_hehe/

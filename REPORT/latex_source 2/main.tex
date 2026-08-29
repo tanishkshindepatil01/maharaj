@@ -21,7 +21,7 @@
 
 \documentclass[
                     % the names of the group authors
-                    author={\shortstack{Megh Kashilkar\\Sanskar Sanju Gade\\Tanishk Nanasaheb Shinde\\Jitendra Suwalka}},
+                    author={\shortstack{Tanishk Nanasaheb Shinde\\Megh Kashilkar\\Sanskar Sanju Gade\\Jitendra Suwalka}},
                     % the name of the supervisor
                     supervisor={\begin{tabular}[t]{@{}l@{}}Dr. Felipe Campelo\\Assistant Supervisors: Dr. Ahmad Al-Mallahi\\(Dalhousie University / McCain Foods representative) and Jason McLaren\end{tabular}},
                     % the degree programme
@@ -48,7 +48,7 @@
 % The supplied class prints \today on the title page and declaration.
 % Fix it to the documented submission deadline; edit this line if the actual
 % submission date is different.
-\renewcommand{\today}{4th September, 2026}
+\renewcommand{\today}{11th September, 2026}
 
 % -----------------------------------------------------------------------------
 % GROUP DECLARATION ADAPTATION
@@ -76,9 +76,9 @@
 
   \noindent
   \begin{tabular}{l}
+  Tanishk Nanasaheb Shinde\\
   Megh Kashilkar\\
   Sanskar Sanju Gade\\
-  Tanishk Nanasaheb Shinde\\
   Jitendra Suwalka
   \end{tabular}
   \hfill \today
@@ -301,7 +301,7 @@ submission.
 
 \noindent
 This dissertation reports the outcomes of a four-member group project undertaken by
-Megh Kashilkar, Sanskar Sanju Gade, Tanishk Nanasaheb Shinde and Jitendra Suwalka.
+Tanishk Nanasaheb Shinde, Megh Kashilkar, Sanskar Sanju Gade and Jitendra Suwalka.
 Unless explicitly stated otherwise, the methods, experimental results and conclusions
 presented in Chapters~1--5 describe the collective project work rather than the
 individual contribution of any one group member.
@@ -738,12 +738,14 @@ set contained 90 images and 135 labelled rocks and was not used to select the de
 \centering
 \caption{Dataset split and class composition before augmentation.}
 \label{tab:dataset}
-\begin{tabular}{lrrr}
+\begin{tabular}{|l|r|r|r|}
 \hline
 Split & Images & Completely exposed & Half buried \\
 \hline
 Training & 313 & 259 & 250 \\
+\hline
 Validation & 45 & 34 & 28 \\
+\hline
 Test & 90 & 69 & 66 \\
 \hline
 Total & 448 & 362 & 344 \\
@@ -791,12 +793,14 @@ post-hoc claim that the chosen model was ``best'' on every measure.
 \centering
 \caption{Validation comparison used for detector selection.}
 \label{tab:modelselection}
-\begin{tabular}{lccccc}
+\begin{tabular}{|l|c|c|c|c|c|}
 \hline
 Model & Precision & Recall & F1 & mAP50 & mAP50--95 \\
 \hline
 YOLOv8n  & 0.681 & 0.759 & 0.718 & 0.759 & \textbf{0.4288} \\
+\hline
 YOLO11n  & 0.743 & 0.719 & 0.731 & 0.729 & 0.4002 \\
+\hline
 YOLO11s  & 0.764 & \textbf{0.801} & \textbf{0.782} & \textbf{0.783} & 0.4107 \\
 \hline
 \end{tabular}
@@ -979,19 +983,28 @@ ran on the Pi CPU.
 \centering
 \caption{Key Raspberry Pi benchmark environment.}
 \label{tab:environment}
-\begin{tabular}{p{5.0cm}p{8.4cm}}
+\begin{tabular}{|p{5.0cm}|p{8.4cm}|}
 \hline
 Component & Recorded configuration \\
 \hline
 Device & Raspberry Pi 5, aarch64, approximately 8~GB RAM \\
+\hline
 Operating system & Debian GNU/Linux 13 \\
+\hline
 Python / Ultralytics & Python 3.13.5 / Ultralytics 8.4.115 \\
+\hline
 ONNX Runtime & 1.28.0 \\
+\hline
 OpenCV / NumPy / Pandas & 5.0.0 / 2.5.1 / 3.0.5 \\
+\hline
 Resource monitoring & psutil 7.2.2 \\
+\hline
 LiteRT interface & \texttt{ai\_edge\_litert.interpreter} \\
+\hline
 Power & Official Raspberry Pi 27~W, 5.1~V/5~A \\
+\hline
 Cooling & No Active Cooler \\
+\hline
 Input source & Stored images; no camera \\
 \hline
 \end{tabular}
@@ -1034,16 +1047,22 @@ Those planned settings were not executed and are not used as if they were observ
 \centering
 \caption{Planned protocol versus the protocol actually executed.}
 \label{tab:protocol}
-\begin{tabular}{p{4.2cm}p{4.8cm}p{4.8cm}}
+\begin{tabular}{|p{4.2cm}|p{4.8cm}|p{4.8cm}|}
 \hline
 Element & Earlier plan & Executed benchmark \\
 \hline
 Input size & $640\times640$ & $640\times640$ \\
+\hline
 Batch size & 1 & 1 \\
+\hline
 Warm-up & 10 inferences & 3 inferences \\
+\hline
 Timed evaluation & 3 passes & 1 pass \\
+\hline
 Images per completed format & 90 per pass & 90 \\
+\hline
 Stability target & 30 minutes & Separate short tests only \\
+\hline
 Completed formats & Planned six & Five complete; ONNX aggregate N/A \\
 \hline
 \end{tabular}
@@ -1150,15 +1169,20 @@ cross-format evidence in one place.
 \caption{Canonical Raspberry Pi benchmark results. FPS denotes median throughput.}
 \label{tab:benchmark}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{lrrrrrrrrr}
+\begin{tabular}{|l|r|r|r|r|r|r|r|r|r|}
 \hline
 Representation & Latency ms & FPS & CPU \% & Peak RAM MB & P & R & F1 & mAP50 & mAP50--95 \\
 \hline
 PyTorch FP32 & 397.48 & 2.52 & 44.47 & 839.47 & 0.716 & 0.550 & 0.622 & 0.548 & 0.275 \\
+\hline
 TFLite FP32  & 143.70 & 6.95 & 69.95 & 868.27 & 0.669 & 0.542 & 0.599 & 0.535 & 0.270 \\
+\hline
 TFLite INT8  & 44.13  & 22.62 & 62.83 & 824.22 & 0.661 & 0.539 & 0.594 & 0.503 & 0.234 \\
+\hline
 NCNN FP32    & 75.09  & 13.26 & 83.32 & 835.25 & 0.667 & 0.542 & 0.598 & 0.535 & 0.271 \\
+\hline
 NCNN FP16    & 72.31  & 13.82 & 87.08 & 835.45 & 0.672 & 0.542 & 0.600 & 0.537 & 0.270 \\
+\hline
 ONNX FP32    & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A \\
 \hline
 \end{tabular}}
@@ -1427,7 +1451,6 @@ system-level measurements matter, rather than assuming portable model formats be
 on a particular device \cite{reddi2020}. They also strengthen the decision to report failures as
 results rather than substitute planned numbers or infer missing aggregate values.
 
-\reportchart[0.82\textwidth]{figures/figure_12.png}{Operational-status comparison across exported formats, distinguishing fixed-benchmark completion from continuous-test outcomes. TFLite INT8 is the only format with both a completed benchmark and a valid continuous run, supporting its final selection.}{fig:stability-final-winner-chart}
 
 \section{Deployment Selection}
 
@@ -1589,15 +1612,20 @@ would change if accuracy requirements, hardware acceleration, cooling or field c
 \centering
 \caption{Assessment of the project objectives against completed evidence.}
 \label{tab:objectives}
-\begin{tabular}{p{8.6cm}p{5.0cm}}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{8.8cm}|>{\raggedright\arraybackslash}p{5.2cm}|}
 \hline
 Objective & Status \\
 \hline
 Establish the two-class detector and evaluation context & Achieved \\
+\hline
 Prepare six alternative edge-runtime representations & Achieved \\
+\hline
 Create a reproducible Raspberry Pi evaluation workflow & Achieved \\
+\hline
 Benchmark quality, latency, throughput and resource behaviour & Achieved for five formats; ONNX aggregate incomplete \\
+\hline
 Investigate operational reliability and negative results & Partially achieved; short/asymmetric stability evidence \\
+\hline
 Select and justify a preferred representation for the tested Pi & Achieved: TFLite INT8 \\
 \hline
 \end{tabular}
@@ -1693,12 +1721,14 @@ Table~\ref{tab:dataset}. Training-only augmentation generated 1,878 additional i
 \begin{table}[htbp]
 \centering
 \caption{Extended detector-development evidence.}
-\begin{tabular}{lrrrrr}
+\begin{tabular}{|l|r|r|r|r|r|}
 \hline
 Model & Precision & Recall & F1 & mAP50 & mAP50--95 \\
 \hline
 YOLOv8n & 0.681 & 0.759 & 0.718 & 0.759 & 0.4288 \\
+\hline
 YOLO11n & 0.743 & 0.719 & 0.731 & 0.729 & 0.4002 \\
+\hline
 YOLO11s & 0.764 & 0.801 & 0.782 & 0.783 & 0.4107 \\
 \hline
 \end{tabular}
@@ -1731,15 +1761,20 @@ Cooler. No camera was used in the benchmark.
 \centering
 \caption{Extended canonical edge metrics used in the main evaluation.}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{lrrrrrrrrrr}
+\begin{tabular}{|l|r|r|r|r|r|r|r|r|r|r|}
 \hline
 Format & Latency ms & FPS & CPU \% & RAM MB & P & R & F1 & mAP50 & mAP50--95 & Count MAE \\
 \hline
 PyTorch FP32 & 397.48 & 2.52 & 44.47 & 839.47 & 0.716 & 0.550 & 0.622 & 0.548 & 0.275 & 0.600 \\
+\hline
 TFLite FP32 & 143.70 & 6.95 & 69.95 & 868.27 & 0.669 & 0.542 & 0.599 & 0.535 & 0.270 & 0.600 \\
+\hline
 TFLite INT8 & 44.13 & 22.62 & 62.83 & 824.22 & 0.661 & 0.539 & 0.594 & 0.503 & 0.234 & 0.633 \\
+\hline
 NCNN FP32 & 75.09 & 13.26 & 83.32 & 835.25 & 0.667 & 0.542 & 0.598 & 0.535 & 0.271 & 0.600 \\
+\hline
 NCNN FP16 & 72.31 & 13.82 & 87.08 & 835.45 & 0.672 & 0.542 & 0.600 & 0.537 & 0.270 & 0.611 \\
+\hline
 ONNX FP32 & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A & N/A \\
 \hline
 \end{tabular}}
