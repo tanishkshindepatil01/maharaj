@@ -1,0 +1,65 @@
+\documentclass[11pt, a4paper]{article}
+
+% --- Page Setup & Margins ---
+\usepackage[a4paper, margin=2cm]{geometry}
+
+% --- Font Selection (Times New Roman) ---
+\usepackage{newtxtext,newtxmath}
+
+% --- Formatting & Utilities ---
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\setstretch{1.12}
+
+% Clean Heading Styles
+\titleformat{\section}{\large\bfseries\rmfamily}{\thesection}{1em}{}[\vspace{-0.5em}\rule{\textwidth}{0.4pt}]
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+
+\titleformat{\subsection}{\bfseries\rmfamily}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{5pt}{2pt}
+
+% Itemize Spacing
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=1.4em}
+
+\pagestyle{empty}
+
+\begin{document}
+
+% --- Header / Title Block ---
+\begin{center}
+    {\Large \bfseries Individual Reflection on Group Project} \\[0.3em]
+    {\small \textbf{Project Title:} Edge-Deployable Rock Detection and Burial Status Classification} \\[0.2em]
+    \rule{\textwidth}{1pt}
+\end{center}
+
+\vspace{-0.5em}
+\noindent
+\begin{tabular}{@{}ll p{2cm} ll@{}}
+    \textbf{Student Name:} & Jitendra Suwalka & & \textbf{Programme:} & MSc Data Science \\
+    \textbf{Team / Group:} & Potato Farming Vision Group & & \textbf{Supervisor:} & Dr. Felipe Campelo \\
+\end{tabular}
+
+\vspace{0.2em}
+
+\section*{1. Your views on completing the project as a team}
+Collaborating as a team on this dissertation was essential for delivering an end-to-end edge deployment pipeline for precision agriculture. The project demanded distinct skill sets---ranging from data annotation and neural network optimization to low-level hardware benchmarking on the Raspberry Pi 5. My primary role focused on deployment engineering across PyTorch FP32, TFLite FP32, and NCNN FP32 representations, as well as designing the automated logging harness for latency, throughput, CPU load, memory footprints, and thermal dynamics. The collective support of the group ensured that hardware findings directly informed our architectural and format selections.
+
+\section*{2. Your views on project management and execution of your team}
+Project management was executed through structured milestones and rigorous testing standards. We established dedicated benchmarking scripts on the Raspberry Pi 5 to record resource metrics synchronously during 90-image test runs. We communicated daily during testing phases, maintaining transparent logs of all runs, and agreed early on to report negative runtime results and engine crashes openly as valuable scientific findings rather than omitting problematic formats.
+
+\section*{3. Reflections on Successes, Failures, and Retrospective Changes}
+\begin{itemize}
+    \item \textbf{What Worked Well:} The comprehensive profiling harness revealed clear runtime dynamics across engines, illustrating how PyTorch FP32 was heavily CPU-bound (2.52 FPS) and providing clear quantitative justification for lightweight edge runtime engines.
+    \item \textbf{What Did Not Work Well:} NCNN FP32 exhibited high CPU utilization (83.3\%) and suffered thread contention failures during continuous endurance stress tests, requiring extensive debugging.
+    \item \textbf{What I Would Do Differently:} I would construct an automated hardware-in-the-loop test bench with integrated external power monitoring to log instantaneous electrical power draw (watts) directly alongside thermal and CPU utilization data.
+\end{itemize}
+
+\section*{4. Any other reflections}
+This research provided invaluable practical expertise in systems-level performance profiling on embedded ARM platforms, demonstrating that memory bandwidth, thermal stability, and runtime concurrency are just as decisive as theoretical FLOP counts in agricultural robotics.
+
+\end{document}

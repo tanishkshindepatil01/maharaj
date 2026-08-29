@@ -1,0 +1,65 @@
+\documentclass[11pt, a4paper]{article}
+
+% --- Page Setup & Margins ---
+\usepackage[a4paper, margin=2cm]{geometry}
+
+% --- Font Selection (Times New Roman) ---
+\usepackage{newtxtext,newtxmath}
+
+% --- Formatting & Utilities ---
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\setstretch{1.12}
+
+% Clean Heading Styles
+\titleformat{\section}{\large\bfseries\rmfamily}{\thesection}{1em}{}[\vspace{-0.5em}\rule{\textwidth}{0.4pt}]
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+
+\titleformat{\subsection}{\bfseries\rmfamily}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{5pt}{2pt}
+
+% Itemize Spacing
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=1.4em}
+
+\pagestyle{empty}
+
+\begin{document}
+
+% --- Header / Title Block ---
+\begin{center}
+    {\Large \bfseries Individual Reflection on Group Project} \\[0.3em]
+    {\small \textbf{Project Title:} Edge-Deployable Rock Detection and Burial Status Classification} \\[0.2em]
+    \rule{\textwidth}{1pt}
+\end{center}
+
+\vspace{-0.5em}
+\noindent
+\begin{tabular}{@{}ll p{2cm} ll@{}}
+    \textbf{Student Name:} & Sanskar Sanju Gade & & \textbf{Programme:} & MSc Data Science \\
+    \textbf{Team / Group:} & Potato Farming Vision Group & & \textbf{Supervisor:} & Dr. Felipe Campelo \\
+\end{tabular}
+
+\vspace{0.2em}
+
+\section*{1. Your views on completing the project as a team}
+Completing this dissertation as a team was an enriching and indispensable experience for tackling the multifaceted challenges of embedded computer vision. Our project spanned dataset annotation, neural network training, model quantisation, and physical edge-device benchmarking on a Raspberry Pi 5. Collaborating within a focused group allowed us to divide complex engineering tasks effectively: while teammates concentrated on architecture training and exploratory multimodal representations, my primary focus was on establishing high-quality ground-truth annotations and driving the deployment pipeline across ONNX FP32, TFLite INT8, and NCNN FP16 formats. Working closely enabled continuous peer verification of dataset labels and cross-checking of edge performance metrics, ensuring methodological rigour throughout.
+
+\section*{2. Your views on project management and execution of your team}
+Our team adopted an agile and transparent project management methodology. We held regular synchronization meetings, tracked deliverables via shared GitHub repositories, and maintained strict version control for models and dataset splits. To guarantee scientific integrity during Raspberry Pi benchmarking, we instituted standardized experimental protocols---such as mandatory thermal cooldown intervals between evaluation runs to avoid hardware throttling artifacts. Task allocation was well-balanced according to individual strengths, and open communication channels enabled rapid troubleshooting when conversion errors or unexpected runtime crashes occurred on the ARM64 platform.
+
+\section*{3. Reflections on Successes, Failures, and Retrospective Changes}
+\begin{itemize}
+    \item \textbf{What Worked Well:} The TFLite INT8 post-training quantisation pipeline delivered exceptional results, achieving 22.62 FPS (a $9.01\times$ speedup over the PyTorch baseline) with minimal localisation loss (0.234 mAP50--95) and flawless 100\% stability across continuous endurance workloads.
+    \item \textbf{What Did Not Work Well:} The ONNX FP32 runtime engine suffered a fatal segmentation fault during benchmark aggregation on ARM64 due to an upstream memory management defect, and NCNN FP16 required extensive manual layer mapping.
+    \item \textbf{What I Would Do Differently:} I would deploy automated continuous integration smoke tests directly on the physical target hardware at an earlier stage to catch ARM64 runtime engine incompatibilities before conducting full-scale benchmark evaluations.
+\end{itemize}
+
+\section*{4. Any other reflections}
+This project provided profound insight into the realities of embedded machine learning in precision agriculture. I developed strong practical competencies in post-training integer quantisation, edge runtime debugging, and bridging the gap between theoretical model metrics and physical deployment constraints.
+
+\end{document}

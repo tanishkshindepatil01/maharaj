@@ -1,0 +1,65 @@
+\documentclass[11pt, a4paper]{article}
+
+% --- Page Setup & Margins ---
+\usepackage[a4paper, margin=2cm]{geometry}
+
+% --- Font Selection (Times New Roman) ---
+\usepackage{newtxtext,newtxmath}
+
+% --- Formatting & Utilities ---
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\setstretch{1.12}
+
+% Clean Heading Styles
+\titleformat{\section}{\large\bfseries\rmfamily}{\thesection}{1em}{}[\vspace{-0.5em}\rule{\textwidth}{0.4pt}]
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+
+\titleformat{\subsection}{\bfseries\rmfamily}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{5pt}{2pt}
+
+% Itemize Spacing
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=1.4em}
+
+\pagestyle{empty}
+
+\begin{document}
+
+% --- Header / Title Block ---
+\begin{center}
+    {\Large \bfseries Individual Reflection on Group Project} \\[0.3em]
+    {\small \textbf{Project Title:} Edge-Deployable Rock Detection and Burial Status Classification} \\[0.2em]
+    \rule{\textwidth}{1pt}
+\end{center}
+
+\vspace{-0.5em}
+\noindent
+\begin{tabular}{@{}ll p{2cm} ll@{}}
+    \textbf{Student Name:} & Megh Kashilkar & & \textbf{Programme:} & MSc Data Science \\
+    \textbf{Team / Group:} & Potato Farming Vision Group & & \textbf{Supervisor:} & Dr. Felipe Campelo \\
+\end{tabular}
+
+\vspace{0.2em}
+
+\section*{1. Your views on completing the project as a team}
+Working as a collaborative team on this dissertation allowed us to pursue ambitious, multi-track research questions that would have been unfeasible individually. While my teammates engineered dataset augmentations, detector training, and embedded quantization on Raspberry Pi hardware, I led the exploration of higher-capacity architectures (YOLO11s) and investigated foundation model capabilities through a dedicated CLIP ViT-B/32 research branch. The team dynamic fostered constructive technical debate, particularly when comparing task-specific YOLO detectors against zero-shot and linear-probe vision-language embeddings for fine-grained rock burial-status classification.
+
+\section*{2. Your views on project management and execution of your team}
+Our team managed the project with clear milestones, regular code reviews, and structured documentation across all experimental branches. We maintained synchronized Jupyter notebooks and centralized evaluation scripts to ensure that validation and test partitions remained strictly comparable across both the YOLO object detection track and the CLIP representation probe track. Communication was proactive, with regular progress updates and transparent discussion of negative or inconclusive experimental outcomes.
+
+\section*{3. Reflections on Successes, Failures, and Retrospective Changes}
+\begin{itemize}
+    \item \textbf{What Worked Well:} YOLO11s demonstrated strong operating-point detection metrics, and the CLIP linear probe investigation provided valuable empirical evidence regarding the visual feature representations required to distinguish subtle burial-depth boundaries.
+    \item \textbf{What Did Not Work Well:} Zero-shot CLIP classification struggled with the low-contrast, fine-grained visual distinction between half-buried rocks and tilled soil, and the two-stage YOLO--CLIP crop classification pipeline introduced excessive latency overhead for real-time edge use.
+    \item \textbf{What I Would Do Differently:} I would explore parameter-efficient fine-tuning (e.g., LoRA) on lightweight vision transformer backbones specifically tailored for edge devices rather than relying on heavy standard ViT-B/32 architectures.
+\end{itemize}
+
+\section*{4. Any other reflections}
+This dissertation deepened my understanding of the trade-offs between massive multimodal foundation models and streamlined edge-native convolutional detectors. It reinforced the importance of domain-specific visual features when addressing practical agricultural challenges.
+
+\end{document}

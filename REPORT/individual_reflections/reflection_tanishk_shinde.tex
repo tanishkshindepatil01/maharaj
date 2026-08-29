@@ -1,0 +1,65 @@
+\documentclass[11pt, a4paper]{article}
+
+% --- Page Setup & Margins ---
+\usepackage[a4paper, margin=2cm]{geometry}
+
+% --- Font Selection (Times New Roman) ---
+\usepackage{newtxtext,newtxmath}
+
+% --- Formatting & Utilities ---
+\usepackage{microtype}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\setstretch{1.12}
+
+% Clean Heading Styles
+\titleformat{\section}{\large\bfseries\rmfamily}{\thesection}{1em}{}[\vspace{-0.5em}\rule{\textwidth}{0.4pt}]
+\titlespacing*{\section}{0pt}{8pt}{4pt}
+
+\titleformat{\subsection}{\bfseries\rmfamily}{\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{5pt}{2pt}
+
+% Itemize Spacing
+\setlist[itemize]{noitemsep, topsep=2pt, leftmargin=1.4em}
+
+\pagestyle{empty}
+
+\begin{document}
+
+% --- Header / Title Block ---
+\begin{center}
+    {\Large \bfseries Individual Reflection on Group Project} \\[0.3em]
+    {\small \textbf{Project Title:} Edge-Deployable Rock Detection and Burial Status Classification} \\[0.2em]
+    \rule{\textwidth}{1pt}
+\end{center}
+
+\vspace{-0.5em}
+\noindent
+\begin{tabular}{@{}ll p{2cm} ll@{}}
+    \textbf{Student Name:} & Tanishk Nanasaheb Shinde & & \textbf{Programme:} & MSc Data Science \\
+    \textbf{Team / Group:} & Potato Farming Vision Group & & \textbf{Supervisor:} & Dr. Felipe Campelo \\
+\end{tabular}
+
+\vspace{0.2em}
+
+\section*{1. Your views on completing the project as a team}
+Completing this MSc dissertation within a collaborative team structure provided a comprehensive perspective on the full machine learning lifecycle. My primary responsibilities centered on detector modeling (training and validating YOLOv8n and YOLO11n), dataset engineering (implementing a leak-free 60/20/20 train/validation/test partition), developing an offline photometric augmentation pipeline ($7\times$ expansion to 2,191 images), and producing the final visualization suite. Collaborating closely with team members handling edge deployment and annotation ensured that our data preprocessing and detector choices aligned directly with real-world edge hardware requirements.
+
+\section*{2. Your views on project management and execution of your team}
+Our project execution relied on disciplined planning and rigorous data governance. We strictly enforced pre-augmentation dataset partitioning to prevent synthetic variants from leaking across evaluation splits, ensuring absolute scientific validity. We maintained clear weekly development targets, peer-reviewed model training logs, and utilized unified visualization templates in Tableau and Python to present complex multi-metric comparisons clearly for our industrial stakeholders and academic supervisors.
+
+\section*{3. Reflections on Successes, Failures, and Retrospective Changes}
+\begin{itemize}
+    \item \textbf{What Worked Well:} The controlled photometric augmentation strategy substantially enhanced model resilience against varying agricultural illumination without introducing geometric bounding-box distortions, establishing YOLOv8n as the superior detector architecture with 0.4288 validation mAP50--95.
+    \item \textbf{What Did Not Work Well:} Detecting half-buried rocks remained inherently challenging across all tested architectures due to severe soil occlusion and low colour contrast against agricultural backgrounds.
+    \item \textbf{What I Would Do Differently:} I would incorporate multi-spectral or stereoscopic depth imagery during the initial field data collection campaign to provide geometric depth cues that assist in segmenting partially buried rocks.
+\end{itemize}
+
+\section*{4. Any other reflections}
+The experience highlighted the paramount importance of data-centric AI. Carefully curated datasets, disciplined augmentation, and transparent visual analytics proved to be just as critical to project success as neural architecture design.
+
+\end{document}
